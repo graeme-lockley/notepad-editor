@@ -1,4 +1,6 @@
 <script>
+	import NotepadLine from './NotepadLine.svelte';
+
 	export let content;
 </script>
 
@@ -6,11 +8,6 @@
 
 <div class="notepad">
 	{#each content as line}
-		<div
-			class="line"
-			contenteditable="true"
-			bind:textContent={line.text}
-			oninput={() => (content = [...content])}
-		></div>
+		<NotepadLine {line} />
 	{/each}
 </div>
