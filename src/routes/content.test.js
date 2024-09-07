@@ -38,6 +38,10 @@ describe('create with one line', () => {
 		expect(content.head()).toBe(line);
 		expect(content.tail()).toBe(line);
 	});
+
+	it('text is correct', () => {
+		expect(line.text).toBe('test');
+	});
 });
 
 describe('create with multiple lines', () => {
@@ -64,5 +68,11 @@ describe('create with multiple lines', () => {
 
 		expect(content.head()).toBe(line1);
 		expect(content.tail()).toBe(line3);
+	});
+
+	it('text is correct', () => {
+		expect(line1.text).toBe('test1');
+		expect(line2.text).toBe('test2');
+		expect(line3.text).toBe('test3');
 	});
 });
