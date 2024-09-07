@@ -7,10 +7,12 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "npm run test:integration && npm run test:unit",
+		"test-watch": "npm run test:integration && npm run test:unit-watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest"
+		"test:unit": "vitest run",
+		"test:unit-watch": "vitest"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
