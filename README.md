@@ -1,38 +1,35 @@
-# create-svelte
+# Notepad Editor
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+The first time I saw [Observable HQ](https://observablehq.com), I was amazed by the simplicity and power of the notebook editor. I was so impressed I spent the rest of the day playing with it with the wonder and joy of seeing something truly spectacular. I wanted to create a similar editor for my personal use. This project is a simple editor that allows me to write markdown and code in the same editor. The editor is built using SvelteKit and uses the Monaco editor for code editing.
 
-## Creating a project
+## Development
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+The code is a simple SvelteKit project. To run the project, you need to have Node.js installed. Clone the repository and run the following commands:
 
 ```bash
-npm run dev
+# install dependencies
+npm install
 
-# or start the server and open the app in a new browser tab
+# install playwright
+npx playwright install
+
+# start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
 
-## Building
+Looking at [package.json](package.json), you can see that there are a number of scripts that you can run. The most important ones are:
 
-To create a production version of your app:
+- `dev`: Start the development server
+- `build`: Create production build
+- `preview`: Preview the production build
+- `test`: Run all the tests
+- `test-watch`: Run the tests in watch mode with the unit test automatically re-running when the code changes
+- `test:unit`: Run the unit tests
+- `test:unit-watch`: Run the unit tests in watch mode
+- `test:integration`: Run the integration tests
+- `lint`: Lint the code
+- `format`: Format the code
 
-```bash
-npm run build
-```
+## License
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
