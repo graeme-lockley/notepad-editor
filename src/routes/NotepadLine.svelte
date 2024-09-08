@@ -4,6 +4,9 @@
 
 	import * as Content from './content';
 
+	import ChevronDown from './Icon.ChevronDown.svelte';
+	import ChevronRight from './Icon.ChevronRight.svelte';
+
 	const visibilityClick = () => {
 		if (line.visibility === Content.Visibility.PINNED) {
 			return;
@@ -31,12 +34,12 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div class="marginl1" on:click={visibilityClick}>
 			{#if line.visibility === Content.Visibility.PINNED}
-				v
+				<ChevronDown />
 			{:else if hover}
 				{#if line.visibility === Content.Visibility.CLOSED}
-					&gt;
+					<ChevronRight />
 				{:else}
-					v
+					<ChevronDown />
 				{/if}
 			{/if}
 		</div>
@@ -72,6 +75,10 @@
 
 	.marginl1 {
 		width: 1em;
+	}
+
+	.output > .marginl1 {
+		cursor: pointer;
 	}
 
 	.marginl2 {

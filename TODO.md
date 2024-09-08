@@ -5,7 +5,7 @@
   - [ ] Introduce a concept of focus
 - [ ] Open and close source line
   - [x] Mechanism working
-  - [ ] Introduce icons to provide the best visual cues
+  - [x] Introduce icons to provide the best visual cues
   - [ ] Style the UI components
 - [ ] Pin and unpin source line
 - [ ] Update experience based on focus
