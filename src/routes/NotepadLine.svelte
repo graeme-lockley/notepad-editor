@@ -1,28 +1,55 @@
 <script>
 	export let line;
+	let hover = false;
 
 	import * as Content from './content';
+
+	const visibilityClick = () => {
+		if (line.visibility === Content.Visibility.PINNED) {
+			return;
+		}
+
+		if (line.visibility === Content.Visibility.CLOSED) {
+			line.visibility = Content.Visibility.OPEN;
+		} else {
+			line.visibility = Content.Visibility.CLOSED;
+		}
+	};
+
+	const hoverStart = () => {
+		hover = true;
+	};
+
+	const hoverEnd = () => {
+		hover = false;
+	};
 </script>
 
-<div class="line">
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div class="line" on:mouseenter={hoverStart} on:mouseleave={hoverEnd}>
 	<div class="output">
-		<div class="marginl1">
-			{#if line.visibility === Content.Visibility.CLOSED}
-				&gt;
-			{:else}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div class="marginl1" on:click={visibilityClick}>
+			{#if line.visibility === Content.Visibility.PINNED}
 				v
+			{:else if hover}
+				{#if line.visibility === Content.Visibility.CLOSED}
+					&gt;
+				{:else}
+					v
+				{/if}
 			{/if}
 		</div>
 		<div class="marginl2">...</div>
 		<div class="body">{line.output}</div>
-		<div class="marginr1"></div>
+		<div class="marginr1">X</div>
 	</div>
-	{#if line.visibility !== Content.Visibility.CLOSED}
+	{#if line.visibility === Content.Visibility.PINNED || (hover && line.visibility === Content.Visibility.OPEN)}
 		<div class="source">
 			<div class="marginl1"></div>
 			<div class="marginl2">[]</div>
 			<div class="body">{line.source}</div>
-			<div class="marginr1"></div>
+			<div class="marginr1">X</div>
 		</div>
 	{/if}
 </div>
@@ -35,17 +62,12 @@
 	.output {
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-start;
-		align-items: center;
-		width: 50%;
 	}
 
 	.source {
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-start;
-		align-items: center;
-		width: 50%;
+		width: 100%;
 	}
 
 	.marginl1 {
@@ -59,11 +81,7 @@
 	.body {
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-start;
-		align-items: center;
 		width: 100%;
-		padding: 0.5em;
-		border-radius: 0.5em;
 	}
 
 	.marginr1 {
