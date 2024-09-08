@@ -32,7 +32,7 @@ describe('create with one line', () => {
 		expect([...content]).toEqual([line]);
 	});
 
-	it('links are correctly set', () => {
+	it ('links are correctly set', () => {
 		expect(line.previous).toBe(null);
 		expect(line.next).toBe(null);
 
