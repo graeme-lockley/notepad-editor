@@ -21,7 +21,8 @@ describe('create', () => {
 
 describe('create with one line', () => {
 	const content = Content.create();
-	const line = content.append('test');
+
+	const line = content.append('test', 'source');
 
 	it('has one line', () => {
 		expect(content.numberOfLines()).toBe(1);
@@ -40,15 +41,21 @@ describe('create with one line', () => {
 	});
 
 	it('text is correct', () => {
-		expect(line.text).toBe('test');
+		expect(line.output).toBe('test');
+		expect(line.source).toBe('source');
 	});
+
+    it ('validate line visibility', () => {
+        expect(line.visibility).toBe(Content.Visibility.CLOSED);
+    });
 });
 
 describe('create with multiple lines', () => {
 	const content = Content.create();
-	const line1 = content.append('test1');
-	const line2 = content.append('test2');
-	const line3 = content.append('test3');
+
+	const line1 = content.append('test1', 'source1', Content.Visibility.OPEN);
+	const line2 = content.append('test2', 'source2', Content.Visibility.PINNED);
+	const line3 = content.append('test3', 'source3', Content.Visibility.CLOSED);
 
 	it('has many lines', () => {
 		expect(content.numberOfLines()).toBe(3);
@@ -71,8 +78,17 @@ describe('create with multiple lines', () => {
 	});
 
 	it('text is correct', () => {
-		expect(line1.text).toBe('test1');
-		expect(line2.text).toBe('test2');
-		expect(line3.text).toBe('test3');
+		expect(line1.output).toBe('test1');
+		expect(line1.source).toBe('source1');
+		expect(line2.output).toBe('test2');
+		expect(line2.source).toBe('source2');
+		expect(line3.output).toBe('test3');
+		expect(line3.source).toBe('source3');
 	});
+
+    it ('validate lines visibility', () => {
+        expect(line1.visibility).toBe(Content.Visibility.OPEN);
+        expect(line2.visibility).toBe(Content.Visibility.PINNED);
+        expect(line3.visibility).toBe(Content.Visibility.CLOSED);
+    });
 });

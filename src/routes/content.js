@@ -1,8 +1,37 @@
-const mkLine = (content, text, previous, next) => ({ content, text, previous, next });
+const createEnum = (values) => {
+	const enumObject = {};
+	for (const val of values) {
+		enumObject[val] = val;
+	}
+	return Object.freeze(enumObject);
+};
+
+export const Visibility = createEnum(['CLOSED', 'OPEN', 'PINNED']);
+
+const mkLine = (output, source, visibility, previous, next) => ({
+	output,
+	source,
+	visibility,
+	previous,
+	next
+});
 
 export const create = () => {
 	let _head = null;
 	let _tail = null;
+
+	const append = (output, source, visibility = Visibility.CLOSED) => {
+		const line = mkLine(output, source, visibility, _tail, null);
+
+		if (_tail) {
+			_tail.next = line;
+		} else {
+			_head = line;
+		}
+		_tail = line;
+
+		return line;
+	};
 
 	const _self = {
 		numberOfLines: () => {
@@ -15,7 +44,7 @@ export const create = () => {
 		head: () => _head,
 		tail: () => _tail,
 
-		append: (text) => append(text),
+		append: append,
 
 		[Symbol.iterator]: () => {
 			let line = _head;
@@ -30,19 +59,6 @@ export const create = () => {
 				}
 			};
 		}
-	};
-
-	const append = (text) => {
-		const line = mkLine(text, text, _tail, null);
-
-		if (_tail) {
-			_tail.next = line;
-		} else {
-			_head = line;
-		}
-		_tail = line;
-
-		return line;
 	};
 
 	return _self;

@@ -4,8 +4,8 @@
 
 	let content = Content.create();
 
-	content.append('hello');
-	content.append('world');
+	content.append('hello', 'hello');
+	content.append('world', 'world');
 </script>
 
 <h1>Notepad Editor</h1>
