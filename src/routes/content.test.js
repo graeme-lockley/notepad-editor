@@ -45,9 +45,9 @@ describe('create with one line', () => {
 		expect(line.source).toBe('source');
 	});
 
-    it ('validate line visibility', () => {
-        expect(line.visibility).toBe(Content.Visibility.CLOSED);
-    });
+	it('validate line visibility', () => {
+		expect(line.visibility).toBe(Content.Visibility.CLOSED);
+	});
 });
 
 describe('create with multiple lines', () => {
@@ -86,9 +86,9 @@ describe('create with multiple lines', () => {
 		expect(line3.source).toBe('source3');
 	});
 
-    it ('validate lines visibility', () => {
-        expect(line1.visibility).toBe(Content.Visibility.OPEN);
-        expect(line2.visibility).toBe(Content.Visibility.PINNED);
-        expect(line3.visibility).toBe(Content.Visibility.CLOSED);
-    });
+	it('validate lines visibility', () => {
+		expect(line1.visibility).toBe(Content.Visibility.OPEN);
+		expect(line2.visibility).toBe(Content.Visibility.PINNED);
+		expect(line3.visibility).toBe(Content.Visibility.CLOSED);
+	});
 });
