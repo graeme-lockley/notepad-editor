@@ -1,8 +1,11 @@
 <script>
 	import Notepad from './Notepad.svelte';
+
+	import * as View from './notepad-view.js';
 	import * as Content from './content.js';
 
 	let content = Content.create();
+	let notepadView = View.newNotepadView(content);
 
 	content.append('output 1', 'source 1', Content.Visibility.CLOSED);
 	content.append('output 2', 'source 2', Content.Visibility.OPEN);
@@ -11,4 +14,4 @@
 
 <h1>Notepad Editor</h1>
 
-<Notepad {content} />
+<Notepad {notepadView} />
