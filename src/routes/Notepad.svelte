@@ -1,11 +1,11 @@
 <script>
 	import NotepadLine from './NotepadLine.svelte';
 
-	export let notepadView;
+	export let content;
 </script>
 
 <div class="notepad">
-	{#each notepadView.content as line}
+	{#each content as line}
 		<NotepadLine {line} />
 	{/each}
 </div>
